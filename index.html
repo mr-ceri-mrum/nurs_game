@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nurs Game - Clash Royale Style</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-header">
+            <div class="player-info">
+                <div class="player-name">Player</div>
+                <div class="player-trophies">0 🏆</div>
+            </div>
+            <div class="battle-timer">3:00</div>
+            <div class="opponent-info">
+                <div class="opponent-name">Opponent</div>
+                <div class="opponent-trophies">0 🏆</div>
+            </div>
+        </div>
+
+        <div class="battlefield">
+            <div class="player-side">
+                <div class="tower left-tower player-tower"></div>
+                <div class="tower king-tower player-tower"></div>
+                <div class="tower right-tower player-tower"></div>
+            </div>
+            <div class="river"></div>
+            <div class="opponent-side">
+                <div class="tower left-tower opponent-tower"></div>
+                <div class="tower king-tower opponent-tower"></div>
+                <div class="tower right-tower opponent-tower"></div>
+            </div>
+        </div>
+
+        <div class="card-deck">
+            <div class="elixir-bar">
+                <div class="elixir-count">0</div>
+                <div class="elixir-bar-fill"></div>
+            </div>
+            <div class="cards">
+                <div class="card" data-card="knight">
+                    <div class="card-cost">3</div>
+                </div>
+                <div class="card" data-card="archer">
+                    <div class="card-cost">3</div>
+                </div>
+                <div class="card" data-card="giant">
+                    <div class="card-cost">5</div>
+                </div>
+                <div class="card" data-card="fireball">
+                    <div class="card-cost">4</div>
+                </div>
+                <div class="card next-card" data-card="minions">
+                    <div class="card-cost">3</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="menu-screen">
+        <h1>Nurs Game</h1>
+        <button id="start-game">Start Battle</button>
+        <button id="deck-builder">Edit Deck</button>
+    </div>
+
+    <script src="js/gameData.js"></script>
+    <script src="js/units.js"></script>
+    <script src="js/gameLogic.js"></script>
+    <script src="js/renderer.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
