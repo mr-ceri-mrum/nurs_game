@@ -199,23 +199,23 @@ body {
 
 /* Card images */
 [data-card="knight"] {
-    background-image: url('../assets/cards/knight.png');
+    background-image: url('../assets/cards/knight.svg');
 }
 
 [data-card="archer"] {
-    background-image: url('../assets/cards/archer.png');
+    background-image: url('../assets/cards/archer.svg');
 }
 
 [data-card="giant"] {
-    background-image: url('../assets/cards/giant.png');
+    background-image: url('../assets/cards/giant.svg');
 }
 
 [data-card="fireball"] {
-    background-image: url('../assets/cards/fireball.png');
+    background-image: url('../assets/cards/fireball.svg');
 }
 
 [data-card="minions"] {
-    background-image: url('../assets/cards/minions.png');
+    background-image: url('../assets/cards/minions.svg');
 }
 
 /* Game units */
@@ -230,19 +230,19 @@ body {
 }
 
 .knight {
-    background-image: url('../assets/units/knight.png');
+    background-image: url('../assets/units/knight.svg');
 }
 
 .archer {
-    background-image: url('../assets/units/archer.png');
+    background-image: url('../assets/units/archer.svg');
 }
 
 .giant {
-    background-image: url('../assets/units/giant.png');
+    background-image: url('../assets/units/giant.svg');
 }
 
 .minions {
-    background-image: url('../assets/units/minions.png');
+    background-image: url('../assets/units/minions.svg');
 }
 
 .player-unit {
