@@ -1,0 +1,331 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.game-container {
+    width: 375px;
+    height: 667px;
+    background-color: #87CEEB;
+    position: relative;
+    overflow: hidden;
+    display: none;
+}
+
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+}
+
+.battle-timer {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.battlefield {
+    height: 70%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.player-side, .opponent-side {
+    height: 45%;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.river {
+    height: 10%;
+    background-color: #4682B4;
+}
+
+.tower {
+    width: 50px;
+    height: 70px;
+    background-color: #964B00;
+    position: relative;
+}
+
+.king-tower {
+    height: 90px;
+    width: 70px;
+}
+
+.player-tower {
+    bottom: 0;
+}
+
+.opponent-tower {
+    top: 0;
+}
+
+.card-deck {
+    height: 25%;
+    background-color: #333;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+}
+
+.elixir-bar {
+    height: 20px;
+    background-color: #666;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.elixir-bar-fill {
+    height: 100%;
+    width: 0%;
+    background-color: #9b59b6;
+    border-radius: 10px;
+    transition: width 0.3s;
+}
+
+.elixir-count {
+    position: absolute;
+    right: 10px;
+    color: white;
+    font-weight: bold;
+    line-height: 20px;
+}
+
+.cards {
+    display: flex;
+    justify-content: space-between;
+    height: calc(100% - 30px);
+}
+
+.card {
+    width: 18%;
+    height: 100%;
+    background-color: #ddd;
+    border-radius: 10px;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card.selected {
+    transform: translateY(-10px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+.card.available {
+    box-shadow: 0 0 10px #2ecc71;
+}
+
+.card-cost {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background-color: #9b59b6;
+    color: white;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.next-card {
+    background-color: #bbb;
+    opacity: 0.7;
+}
+
+.menu-screen {
+    width: 375px;
+    height: 667px;
+    background-color: #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.menu-screen h1 {
+    font-size: 40px;
+    margin-bottom: 50px;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+.menu-screen button {
+    width: 200px;
+    height: 50px;
+    margin: 10px 0;
+    background-color: #3498db;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.menu-screen button:hover {
+    background-color: #2980b9;
+}
+
+/* Card images */
+[data-card="knight"] {
+    background-image: url('../assets/cards/knight.png');
+}
+
+[data-card="archer"] {
+    background-image: url('../assets/cards/archer.png');
+}
+
+[data-card="giant"] {
+    background-image: url('../assets/cards/giant.png');
+}
+
+[data-card="fireball"] {
+    background-image: url('../assets/cards/fireball.png');
+}
+
+[data-card="minions"] {
+    background-image: url('../assets/cards/minions.png');
+}
+
+/* Game units */
+.unit {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 10;
+}
+
+.knight {
+    background-image: url('../assets/units/knight.png');
+}
+
+.archer {
+    background-image: url('../assets/units/archer.png');
+}
+
+.giant {
+    background-image: url('../assets/units/giant.png');
+}
+
+.minions {
+    background-image: url('../assets/units/minions.png');
+}
+
+.player-unit {
+    filter: drop-shadow(0 0 3px #3498db);
+}
+
+.opponent-unit {
+    filter: drop-shadow(0 0 3px #e74c3c);
+}
+
+.unit.attacking {
+    animation: attack 0.5s infinite;
+}
+
+.unit.dying {
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.5s;
+}
+
+@keyframes attack {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.health-bar {
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    background-color: #eee;
+    bottom: -7px;
+    left: 0;
+    border-radius: 2px;
+}
+
+.health-fill {
+    height: 100%;
+    width: 100%;
+    background-color: #2ecc71;
+    border-radius: 2px;
+    transition: width 0.3s;
+}
+
+.projectile {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #f39c12;
+    z-index: 5;
+}
+
+.spell-effect {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: rgba(231, 76, 60, 0.5);
+    z-index: 20;
+    animation: spell-animation 1s forwards;
+}
+
+.fireball {
+    background-color: rgba(231, 76, 60, 0.5);
+}
+
+.tower.destroyed {
+    opacity: 0.5;
+    filter: grayscale(100%);
+}
+
+@keyframes spell-animation {
+    0% {
+        transform: scale(0.5);
+        opacity: 0.2;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.7;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
